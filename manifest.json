@@ -1,0 +1,21 @@
+{
+    "$schema": "https://json.schemastore.org/chrome-manifest.json",
+    "name": "redirect-skipper",
+    "version": "1.0.0",
+    "description": "A Chrome extension that bypasses redirect warning pages.",
+    "homepage_url": "https://github.com/dogodo-cc/redirect-skipper",
+    "manifest_version": 3,
+    "content_scripts": [
+        {
+            "matches": ["https://juejin.cn/post/*", "https://sspai.com/post/*", "https://www.zhihu.com/*"],
+            "js": ["./scripts/redirect-skipper.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "icons": {
+        "16": "images/logo.png",
+        "32": "images/logo.png",
+        "48": "images/logo.png",
+        "128": "images/logo.png"
+    }
+}
