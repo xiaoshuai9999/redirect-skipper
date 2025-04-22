@@ -7,7 +7,7 @@
     "manifest_version": 3,
     "content_scripts": [
         {
-            "matches": ["https://juejin.cn/post/*", "https://sspai.com/post/*", "https://www.zhihu.com/*"],
+            "matches": ["<all_urls>"],
             "js": ["./scripts/redirect-skipper.js"],
             "run_at": "document_end"
         }

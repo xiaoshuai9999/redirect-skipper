@@ -1,0 +1,17 @@
+{
+    "description": "远程配置可以开启 Redirect-Skipper 插件的网站 （因为谷歌商店审核太慢了，否则无需通过远程配置，增加复杂性）",
+    "sites": [
+        {
+            "hostname": "juejin.cn",
+            "title": "掘金"
+        },
+        {
+            "hostname": "sspai.com",
+            "title": "少数派"
+        },
+        {
+            "hostname": "www.zhihu.com",
+            "title": "知乎"
+        }
+    ]
+}
