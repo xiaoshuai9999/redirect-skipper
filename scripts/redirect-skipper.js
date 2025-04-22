@@ -1,7 +1,5 @@
 function replaceAlink() {
-    juejin();
-    sspai();
-    zhihu();
+    findByTarget();
 }
 
 function observerDocument() {
@@ -28,50 +26,29 @@ function observerDocument() {
 });
 
 
-// 每个网站的具体实现
+// 符合 '?target=' 格式的链接
+// https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.apple.com%2Fcn%2Fdesign%2Fhuman-interface-guidelines%2Fapp-icons%23macOS/
+// https://sspai.com/link?target=https%3A%2F%2Fgeoguess.games%2F
+// https://link.zhihu.com/?target=https%3A//asciidoctor.org/
 
-function juejin() {
-    if (location.hostname !== 'juejin.cn') return;
+const hostnames = [
+    'juejin.cn',
+    'sspai.com',
+    'www.zhihu.com',
+]
 
-    // 不要通过 https://link.juejin.cn 当作前缀来判断，掘金那边的链接有可能会变
-    // document.querySelectorAll('a[href^="https://link.juejin.cn"]')
-
+function findByTarget() {
+    if (!hostnames.includes(location.hostname)) return;
     const linkKeyword = '?target=';
     const alinks = document.querySelectorAll(`a[href*="${linkKeyword}"]`);
     if (!alinks) return;
     alinks.forEach((a) => {
-        a.href = a.title; // 目前掘金的原链接都是直接放在 title 里面的
-
-        // const href = a.href;
-        // const targetIndex = href.indexOf(linkKeyword);
-        // if (targetIndex !== -1) {
-        //     const newHref = href.substring(targetIndex + linkKeyword.length);
-        //     a.href = decodeURIComponent(newHref);
-        // }
+        const href = a.href;
+        const targetIndex = href.indexOf(linkKeyword);
+        if (targetIndex !== -1) {
+            const newHref = href.substring(targetIndex + linkKeyword.length);
+            a.href = decodeURIComponent(newHref);
+        }
     });
 }
 
-function sspai() {
-    if (location.hostname !== 'sspai.com') return;
-
-    const linkPrefix = 'https://sspai.com/link?target=';
-    const alinks = document.querySelectorAll(`a[href^="${linkPrefix}"]`);
-    if (!alinks) return;
-
-    alinks.forEach((a) => {
-        a.href = decodeURIComponent(a.href.replace(linkPrefix, ''));
-    });
-}
-
-function zhihu() {
-    if (location.hostname !== 'www.zhihu.com') return;
-
-    const linkPrefix = 'http://link.zhihu.com/?target=';
-
-    const alinks = document.querySelectorAll(`a[href^="${linkPrefix}"]`);
-    if (!alinks) return;
-
-    alinks.forEach((a) => {
-        a.href = decodeURIComponent(a.href.replace(linkPrefix, ''));
-    });
-}
