@@ -12,6 +12,10 @@
         {
             "hostname": "www.zhihu.com",
             "title": "知乎"
+        },
+        {
+            "hostname": "zhuanlan.zhihu.com",
+            "title":"知乎专栏"
         }
     ]
 }
