@@ -1,9 +1,11 @@
 function replaceALinks() {
-  findByTarget();
+  findByTarget('target');
+  findByTarget('url');
+  findByTarget('href');
 }
 
 function observerDocument() {
-  const mb = new MutationObserver((mutationsList) => {
+  const mo = new MutationObserver((mutationsList) => {
     for (const mutation of mutationsList) {
       if (mutation.type === "childList") {
         if (mutation.addedNodes.length) {
@@ -12,7 +14,7 @@ function observerDocument() {
       }
     }
   });
-  mb.observe(document, { childList: true, subtree: true });
+  mo.observe(document, { childList: true, subtree: true });
 }
 
 // 监听路由等事件
@@ -55,19 +57,17 @@ function updateHostnames() {
 // https://sspai.com/link?target=https%3A%2F%2Fgeoguess.games%2F
 // https://link.zhihu.com/?target=https%3A//asciidoctor.org/
 
-function findByTarget() {
+function findByTarget(linkKeyword = 'target') {
   if (!hostnames.includes(location.hostname)) return;
-  const linkKeyword = "?target=";
   const aLinks = document.querySelectorAll(
-    `a[href*="${linkKeyword}"]:not([data-redirect-skipper])`
+    `a[href*="${linkKeyword}="]:not([data-redirect-skipper])`
   );
   if (!aLinks) return;
   aLinks.forEach((a) => {
-    const href = a.href;
-    const targetIndex = href.indexOf(linkKeyword);
-    if (targetIndex !== -1) {
-      const newHref = href.substring(targetIndex + linkKeyword.length);
-      a.href = decodeURIComponent(newHref);
+    const searchParams = (new URL(a.href)).searchParams;
+    const targetURL = searchParams.get(linkKeyword)
+    if (targetURL) {
+      a.href = decodeURIComponent(targetURL);
       a.setAttribute("data-redirect-skipper", "true");
     }
   });
