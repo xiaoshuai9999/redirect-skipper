@@ -16,6 +16,10 @@
         {
             "hostname": "zhuanlan.zhihu.com",
             "title":"知乎专栏"
+        },
+        {
+            "hostname": "blog.csdn.net",
+            "title": "CSDN"
         }
     ]
 }

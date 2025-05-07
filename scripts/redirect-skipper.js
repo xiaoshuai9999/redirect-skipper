@@ -42,10 +42,11 @@ function updateHostnames() {
       throw new Error("Network response was not ok");
     })
     .then((data) => {
-      // 如果拉到了远程数据，就用远程的
-      hostnames = data.sites.map((site) => {
-        return site.hostname;
-      });
+      // 合并远程数据
+      hostnames = [...new Set([
+        ...hostnames,
+        ...data.sites.map(site => site.hostname),
+      ])];
     })
     .catch((error) => {
       console.error(error);
