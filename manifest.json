@@ -1,21 +1,30 @@
 {
-    "$schema": "https://json.schemastore.org/chrome-manifest.json",
-    "name": "redirect-skipper",
-    "version": "1.0.2",
-    "description": "A Chrome extension that bypasses redirect warning pages.",
-    "homepage_url": "https://github.com/dogodo-cc/redirect-skipper",
-    "manifest_version": 3,
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["./scripts/redirect-skipper.js"],
-            "run_at": "document_end"
-        }
-    ],
-    "icons": {
-        "16": "images/logo.png",
-        "32": "images/logo.png",
-        "48": "images/logo.png",
-        "128": "images/logo.png"
-    }
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "name": "redirect-skipper",
+  "version": "2.0.0",
+  "description": "A Chrome extension that bypasses redirect warning pages.",
+  "homepage_url": "https://github.com/dogodo-cc/redirect-skipper",
+  "manifest_version": 3,
+  "permissions": ["webNavigation", "tabs", "storage"],
+  "background": {
+    "service_worker": "./scripts/service_worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/logo.png",
+      "32": "images/logo.png",
+      "48": "images/logo.png",
+      "128": "images/logo.png"
+    },
+    "default_title": "Add current page to skip list"
+  },
+  "icons": {
+    "16": "images/logo.png",
+    "32": "images/logo.png",
+    "48": "images/logo.png",
+    "128": "images/logo.png"
+  },
+  "default_locale": "en"
 }
