@@ -7,6 +7,7 @@ const root = process.cwd();
 (async function () {
   await emptyDir(join(root, "dist"));
 
+  await copy(join(root, "_locales/"), join(root, "dist/_locales/"));
   await copy(join(root, "images/"), join(root, "dist/images/"));
 
   await copy(join(root, "src"), join(root, "dist/src"));
