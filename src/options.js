@@ -45,17 +45,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 : ""
             }
           <span class="site-name">${site.title || site.hostname}</span>
-          <a target="_blank" href="https://${
-            site.hostname
-          }" class="site-hostname">${site.hostname}</a>
+          <a
+            class="site-hostname"
+            target="_blank"
+            href="https://${site.hostname}">
+            ${site.hostname}
+          </a>
         </div>
         <div class="site-actions">
           ${
             site.builtIn
               ? ""
               : `
-                <span class="btn btn-remove" data-hostname="${site.hostname}" data-title="i18n:options_deleteTip">❌</span>
-                <a class="btn create-issue" target="_blank" href="${issueUrl}" data-title="i18n:options_reportTip">🙋</a>
+                <span class="btn btn-remove" data-hostname="${site.hostname}" title="i18n:options_deleteTip">❌</span>
+                <a class="btn create-issue" target="_blank" href="${issueUrl}" title="i18n:options_reportTip">🙋</a>
                 `
           }
         </div>

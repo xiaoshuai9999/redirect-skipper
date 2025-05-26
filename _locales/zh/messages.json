@@ -1,34 +1,32 @@
 {
-  "menuItemTitle": {
+  "menu_addToSkipList": {
     "message": "添加到跳过列表"
   },
   "actionTitle": {
     "message": "将当前页添加到跳过列表"
   },
-  "currentUrl": {
+  "popup_title_currentUrl": {
     "message": "当前页面地址"
   },
-  "siteTitle": {
+  "popup_title_siteTitle": {
     "message": "站点名称"
   },
-  "hostname": {
+  "popup_title_hostname": {
     "message": "当前域名"
   },
-  "targetParam": {
+  "popup_title_targetParam": {
     "message": "目标地址的参数名称"
   },
-  "targetDomain": {
+  "popup_title_targetDomain": {
     "message": "目标地址"
   },
-  "submit": {
+  "popup_btn_submit": {
     "message": "添加到跳过列表"
   },
-  "canNotGetTargetUrl": {
+  "popup_canNotGetTargetUrl": {
     "message": "无法解析出目标地址"
   },
-  "setting": {
-    "message": "设置"
-  },
+
   "popup_addSuccessTip": {
     "message": "添加到列表成功😊!"
   },
@@ -43,6 +41,6 @@
     "message": "删除该项"
   },
   "options_reportTip": {
-    "message": "反馈给开发者，谢谢!"
+    "message": "反馈给开发者"
   }
 }

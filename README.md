@@ -1,14 +1,14 @@
 # Redirect-skipper
+
 A Chrome extension that bypasses redirect warning pages.
 
 [插件安装地址](https://chromewebstore.google.com/detail/redirect-skipper/bcjldhihfjnhgmkmdeojigknladnbcek?authuser=0&hl=zh-CN)
 
-
 启用这个插件之后，将会跳过重定向提示的页面，让网页浏览更顺畅。
 
-![](./images/site-juejin.png)
-![](./images/site-zhihu.png)
-![](./images/site-sspai.png)
+![](./screenshots/site-juejin.png)
+![](./screenshots/site-zhihu.png)
+![](./screenshots/site-sspai.png)
 
 ## 贡献
 

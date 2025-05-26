@@ -5,7 +5,7 @@
   "description": "A Chrome extension that bypasses redirect warning pages.",
   "homepage_url": "https://github.com/dogodo-cc/redirect-skipper",
   "manifest_version": 3,
-  "permissions": ["webNavigation", "tabs", "storage"],
+  "permissions": ["webNavigation", "tabs", "storage", "contextMenus"],
   "background": {
     "service_worker": "./src/service_worker.js",
     "type": "module"

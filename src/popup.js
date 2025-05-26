@@ -1,4 +1,5 @@
 import { targetParams, $, i18n, message } from "./utils.js";
+import sitesBuiltIn from "./sites.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const $currentUrl = $("current-url");
@@ -10,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const $settingButton = $("setting");
 
   i18n();
+
+  createParamOptions();
 
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     if (tabs && tabs[0]) {
@@ -104,6 +107,10 @@ function updateUserData(data) {
       return reject(new Error("Invalid data"));
     }
 
+    if (sitesBuiltIn.some((site) => site.hostname === data.hostname)) {
+      return reject(new Error("Cannot modify built-in sites"));
+    }
+
     chrome.storage.sync.get("sites", (result) => {
       const sites = result.sites || [];
       const existingIndex = sites.findIndex(
@@ -122,5 +129,17 @@ function updateUserData(data) {
         resolve();
       });
     });
+  });
+}
+
+function createParamOptions() {
+  const $targetParamList = $("target-param-list");
+  $targetParamList.innerHTML = "";
+
+  targetParams.forEach((param) => {
+    const option = document.createElement("option");
+    option.value = param;
+    option.textContent = param;
+    $targetParamList.appendChild(option);
   });
 }

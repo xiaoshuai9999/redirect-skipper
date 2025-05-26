@@ -1,33 +1,31 @@
 {
-  "menuItemTitle": {
+  "menu_addToSkipList": {
     "message": "Add to skip list"
   },
   "actionTitle": {
     "message": "Add current page to skip list"
   },
-  "currentUrl": {
+
+  "popup_title_currentUrl": {
     "message": "Current URL"
   },
-  "siteTitle": {
+  "popup_title_siteTitle": {
     "message": "Site Title"
   },
-  "hostname": {
+  "popup_title_hostname": {
     "message": "Hostname"
   },
-  "targetParam": {
+  "popup_title_targetParam": {
     "message": "Target Param"
   },
-  "targetDomain": {
+  "popup_title_targetDomain": {
     "message": "Target Domain"
   },
-  "submit": {
+  "popup_btn_submit": {
     "message": "Add to skip list"
   },
-  "canNotGetTargetUrl": {
+  "popup_canNotGetTargetUrl": {
     "message": "can not get target url"
-  },
-  "setting": {
-    "message": "Setting"
   },
   "popup_addSuccessTip": {
     "message": "Add to skip list success 😊!"
@@ -43,6 +41,6 @@
     "message": "Click to delete"
   },
   "options_reportTip": {
-    "message": "Report to developer, thanks!"
+    "message": "Report to developer"
   }
 }

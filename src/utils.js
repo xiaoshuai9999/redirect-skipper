@@ -35,9 +35,9 @@ export function i18n() {
   });
 
   // 翻译 title
-  const titles = document.querySelectorAll("[data-title^='i18n:']");
+  const titles = document.querySelectorAll("[title^='i18n:']");
   titles.forEach((element) => {
-    const titleKey = element.dataset.title.replace("i18n:", "");
+    const titleKey = element.title.replace("i18n:", "");
     const message = chrome.i18n.getMessage(titleKey);
     if (message) {
       element.title = message;

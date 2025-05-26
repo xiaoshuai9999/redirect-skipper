@@ -44,6 +44,7 @@
         padding: 4px 6px;
         &:disabled {
           cursor: not-allowed;
+          opacity: 0.7;
         }
       }
       .btns {
@@ -68,38 +69,29 @@
       <button id="setting">🔧</button>
     </div>
 
-    <h4 data-i18n="currentUrl" style="margin-block-start: 0"></h4>
+    <h4 data-i18n="popup_title_currentUrl" style="margin-block-start: 0"></h4>
     <input id="current-url" />
 
-    <h4 data-i18n="siteTitle"></h4>
+    <h4 data-i18n="popup_title_siteTitle"></h4>
     <input id="site-title" type="text" />
 
-    <h4 data-i18n="hostname"></h4>
+    <h4 data-i18n="popup_title_hostname"></h4>
     <input id="hostname-input" readonly type="text" />
 
-    <h4 data-i18n="targetParam"></h4>
-
+    <h4 data-i18n="popup_title_targetParam"></h4>
     <input list="target-param-list" id="target-param-input" />
+    <datalist id="target-param-list"></datalist>
 
-    <h4 data-i18n="targetDomain"></h4>
-
+    <h4 data-i18n="popup_title_targetDomain"></h4>
     <input
       id="target-domain"
-      placeholder="i18n:canNotGetTargetUrl"
+      placeholder="i18n:popup_canNotGetTargetUrl"
       readonly
       type="text"
     />
 
-    <datalist id="target-param-list">
-      <option value="target"></option>
-      <option value="href"></option>
-      <option value="link"></option>
-      <option value="url"></option>
-      <option value="u"></option>
-    </datalist>
-
     <div class="btns">
-      <button data-i18n="submit" id="submit"></button>
+      <button data-i18n="popup_btn_submit" id="submit"></button>
     </div>
 
     <script type="module" src="./src/popup.js"></script>

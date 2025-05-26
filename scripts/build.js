@@ -7,22 +7,7 @@ const root = process.cwd();
 (async function () {
   await emptyDir(join(root, "dist"));
 
-  await copy(
-    join(root, "images/logo-16.png"),
-    join(root, "dist/images/logo-16.png")
-  );
-  await copy(
-    join(root, "images/logo-32.png"),
-    join(root, "dist/images/logo-32.png")
-  );
-  await copy(
-    join(root, "images/logo-64.png"),
-    join(root, "dist/images/logo-64.png")
-  );
-  await copy(
-    join(root, "images/logo-128.png"),
-    join(root, "dist/images/logo-128.png")
-  );
+  await copy(join(root, "images/"), join(root, "dist/images/"));
 
   await copy(join(root, "src"), join(root, "dist/src"));
 

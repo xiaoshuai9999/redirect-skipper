@@ -3,6 +3,7 @@ import { getTargetUrl } from "./utils.js";
 
 let sitesLocal = [];
 
+// 核心功能：拦截导航请求并重定向到目标URL
 chrome.webNavigation.onBeforeNavigate.addListener(
   (details) => {
     try {
@@ -39,7 +40,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(
   { urls: ["<all_urls>"] }
 );
 
-function contentMenu() {
+function createContextMenus() {
   // 右键菜单
   const menuIdMap = {
     addToSkipList: "addToSkipList",
@@ -48,21 +49,20 @@ function contentMenu() {
   const extensionMenus = [
     {
       id: menuIdMap.addToSkipList,
-      title: chrome.i18n.getMessage("menuItemTitle"),
+      title: chrome.i18n.getMessage("menu_addToSkipList"),
       contexts: ["page"],
       action(info, tab) {
-        console.log("addToSkipList", info, tab);
+        // 打开 popup 页面
+        chrome.action.openPopup();
       },
     },
   ];
 
-  chrome.runtime.onInstalled.addListener(() => {
-    extensionMenus.forEach((menuItem) => {
-      chrome.contextMenus.create({
-        id: menuItem.id,
-        title: menuItem.title,
-        contexts: menuItem.contexts,
-      });
+  extensionMenus.forEach((menuItem) => {
+    chrome.contextMenus.create({
+      id: menuItem.id,
+      title: menuItem.title,
+      contexts: menuItem.contexts,
     });
   });
 
@@ -78,10 +78,19 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.action.setTitle({ title });
   }
 
+  createContextMenus();
+
   // 初始化用户数据
   chrome.storage.sync.get("sites").then((result) => {
     if (Array.isArray(result.sites)) {
-      sitesLocal = result.sites;
+      // 如果官方的 sites 已经收录了某些站点，则将其从用户配置列表中删除
+      // 因为官方收录的最终会携带图标等信息，更齐全
+      sitesLocal = result.sites.filter((localSite) =>
+        sites.every((s) => s.hostname !== localSite.hostname)
+      );
+
+      // 将剔除重复后的 sitesLocal 保存到 storage
+      chrome.storage.sync.set({ sites: sitesLocal });
     }
   });
 
