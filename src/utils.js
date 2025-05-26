@@ -56,3 +56,9 @@ export function message(text, type = "info") {
     messageElement.parentElement.removeChild(messageElement);
   });
 }
+
+export function generateIssueUrl(content) {
+  return `https://github.com/dogodo-cc/redirect-skipper/issues/new?title=${encodeURIComponent(
+    "report a new link"
+  )}&body=${encodeURIComponent(content)}`;
+}

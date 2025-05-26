@@ -1,4 +1,4 @@
-import { $, i18n, message } from "./utils.js";
+import { $, i18n, message, generateIssueUrl } from "./utils.js";
 import sites from "./sites.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -31,10 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const li = document.createElement("li");
       li.className = "site-item";
 
-      const issueUrl = `https://github.com/dogodo-cc/redirect-skipper/issues/new?title=${encodeURIComponent(
-        "report a new link"
-      )}&body=${encodeURIComponent(site.example || site.hostname)}`;
-
       const template = `
         <div class="site-info">
             ${
@@ -57,8 +53,12 @@ document.addEventListener("DOMContentLoaded", function () {
             site.builtIn
               ? ""
               : `
-                <span class="btn btn-remove" data-hostname="${site.hostname}" title="i18n:options_deleteTip">❌</span>
-                <a class="btn create-issue" target="_blank" href="${issueUrl}" title="i18n:options_reportTip">🙋</a>
+                <span class="btn btn-remove" data-hostname="${
+                  site.hostname
+                }" title="i18n:options_deleteTip">❌</span>
+                <a class="btn create-issue" target="_blank" href="${generateIssueUrl(
+                  site.example || site.hostname
+                )}" title="i18n:options_reportTip">🙋</a>
                 `
           }
         </div>

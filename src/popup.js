@@ -1,14 +1,15 @@
-import { targetParams, $, i18n, message } from "./utils.js";
+import { targetParams, $, i18n, message, generateIssueUrl } from "./utils.js";
 import sitesBuiltIn from "./sites.js";
 
 document.addEventListener("DOMContentLoaded", function () {
+  const $settingButton = $("setting");
   const $currentUrl = $("current-url");
   const $siteTitle = $("site-title");
   const $hostnameInput = $("hostname-input");
   const $targetParamInput = $("target-param-input");
   const $targetDomain = $("target-domain");
   const $submitButton = $("submit");
-  const $settingButton = $("setting");
+  const $reportButton = $("report");
 
   i18n();
 
@@ -90,12 +91,24 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateSubmitButton() {
     const targetDomain = $targetDomain.value.trim();
     $submitButton.disabled = !Boolean(targetDomain);
+    $reportButton.disabled = !Boolean(targetDomain);
   }
 
   $settingButton.addEventListener(
     "click",
     () => {
       window.open(`chrome-extension://${chrome.runtime.id}/page-options.html`);
+    },
+    false
+  );
+
+  $reportButton.addEventListener(
+    "click",
+    () => {
+      const issueUrl = generateIssueUrl(
+        $currentUrl.value || $hostnameInput.value
+      );
+      window.open(issueUrl, "_blank");
     },
     false
   );
