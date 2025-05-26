@@ -4,5 +4,45 @@
   },
   "actionTitle": {
     "message": "Add current page to skip list"
+  },
+  "currentUrl": {
+    "message": "Current URL"
+  },
+  "siteTitle": {
+    "message": "Site Title"
+  },
+  "hostname": {
+    "message": "Hostname"
+  },
+  "targetParam": {
+    "message": "Target Param"
+  },
+  "targetDomain": {
+    "message": "Target Domain"
+  },
+  "submit": {
+    "message": "Add to skip list"
+  },
+  "canNotGetTargetUrl": {
+    "message": "can not get target url"
+  },
+  "setting": {
+    "message": "Setting"
+  },
+  "popup_addSuccessTip": {
+    "message": "Add to skip list success 😊!"
+  },
+  "popup_addErrorTip": {
+    "message": "Add to skip list failed ☹️!"
+  },
+
+  "options_deleteConfirmTip": {
+    "message": "Are you sure you want to delete "
+  },
+  "options_deleteTip": {
+    "message": "Click to delete"
+  },
+  "options_reportTip": {
+    "message": "Report to developer, thanks!"
   }
 }

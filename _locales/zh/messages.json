@@ -4,5 +4,45 @@
   },
   "actionTitle": {
     "message": "将当前页添加到跳过列表"
+  },
+  "currentUrl": {
+    "message": "当前页面地址"
+  },
+  "siteTitle": {
+    "message": "站点名称"
+  },
+  "hostname": {
+    "message": "当前域名"
+  },
+  "targetParam": {
+    "message": "目标地址的参数名称"
+  },
+  "targetDomain": {
+    "message": "目标地址"
+  },
+  "submit": {
+    "message": "添加到跳过列表"
+  },
+  "canNotGetTargetUrl": {
+    "message": "无法解析出目标地址"
+  },
+  "setting": {
+    "message": "设置"
+  },
+  "popup_addSuccessTip": {
+    "message": "添加到列表成功😊!"
+  },
+  "popup_addErrorTip": {
+    "message": "添加到列表失败☹️!"
+  },
+
+  "options_deleteConfirmTip": {
+    "message": "确定要删除 "
+  },
+  "options_deleteTip": {
+    "message": "删除该项"
+  },
+  "options_reportTip": {
+    "message": "反馈给开发者，谢谢!"
   }
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>options</title>
+    <link rel="stylesheet" href="./src/theme.css" />
+    <style>
+      html {
+        background-color: var(--bg-color);
+        color: var(--font-color);
+      }
+      #sites-list {
+        width: 600px;
+        margin: 30px auto;
+        display: flex;
+        flex-flow: wrap;
+
+        & li {
+          width: 300px;
+          flex-shrink: 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 30px;
+          line-height: 1;
+
+          & .site-info {
+            display: flex;
+            align-items: center;
+          }
+
+          & .site-favicon {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+          }
+
+          & .site-name {
+            margin-right: 4px;
+          }
+
+          & .site-hostname {
+            color: var(-link-color);
+          }
+
+          & .site-actions {
+            & .btn {
+              padding: 0 4px;
+              cursor: pointer;
+            }
+
+            & a {
+              text-decoration-line: none;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="sites-list"></ul>
+
+    <script type="module" src="./src/options.js"></script>
+  </body>
+</html>

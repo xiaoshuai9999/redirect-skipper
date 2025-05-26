@@ -1,0 +1,126 @@
+import { targetParams, $, i18n, message } from "./utils.js";
+
+document.addEventListener("DOMContentLoaded", function () {
+  const $currentUrl = $("current-url");
+  const $siteTitle = $("site-title");
+  const $hostnameInput = $("hostname-input");
+  const $targetParamInput = $("target-param-input");
+  const $targetDomain = $("target-domain");
+  const $submitButton = $("submit");
+  const $settingButton = $("setting");
+
+  i18n();
+
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    if (tabs && tabs[0]) {
+      analyzeUrl(tabs[0].url, tabs[0].title);
+    }
+  });
+
+  $currentUrl.addEventListener("change", (e) => {
+    analyzeUrl(e.target.value);
+  });
+
+  $targetParamInput.addEventListener("change", (e) => {
+    analyzeUrl($currentUrl.value, "", e.target.value);
+  });
+
+  $submitButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const btn = e.target;
+    if (btn.isUpdating) {
+      return;
+    }
+    btn.isUpdating = true;
+
+    const data = {
+      example: $currentUrl.value,
+      title: $siteTitle.value,
+      hostname: $hostnameInput.value,
+      param: $targetParamInput.value,
+    };
+    updateUserData(data)
+      .then(() => {
+        message(chrome.i18n.getMessage("popup_addSuccessTip"), "info");
+      })
+      .catch((error) => {
+        message(
+          error.message || chrome.i18n.getMessage("popup_addErrorTip"),
+          "error"
+        );
+      })
+      .finally(() => {
+        btn.isUpdating = false;
+      });
+  });
+
+  function analyzeUrl(link, title = "", param = "") {
+    $currentUrl.value = link;
+    $currentUrl.title = link;
+
+    const url = new URL(link);
+
+    if (title) {
+      $siteTitle.value = title;
+    }
+
+    const domain = url.hostname;
+    $hostnameInput.value = domain;
+
+    const targetParam =
+      param || targetParams.find((param) => url.searchParams.has(param));
+
+    if (targetParam) {
+      $targetParamInput.value = targetParam;
+
+      const targetUrl = url.searchParams.get(targetParam);
+      $targetDomain.value = targetUrl ? decodeURIComponent(targetUrl) : "";
+    } else {
+      $targetParamInput.value = "";
+      $targetDomain.value = "";
+    }
+
+    updateSubmitButton();
+  }
+
+  function updateSubmitButton() {
+    const targetDomain = $targetDomain.value.trim();
+    $submitButton.disabled = !Boolean(targetDomain);
+  }
+
+  $settingButton.addEventListener(
+    "click",
+    () => {
+      window.open(`chrome-extension://${chrome.runtime.id}/page-options.html`);
+    },
+    false
+  );
+});
+
+function updateUserData(data) {
+  return new Promise((resolve, reject) => {
+    if (!data || !data.hostname) {
+      return reject(new Error("Invalid data"));
+    }
+
+    chrome.storage.sync.get("sites", (result) => {
+      const sites = result.sites || [];
+      const existingIndex = sites.findIndex(
+        (site) => site.hostname === data.hostname
+      );
+
+      if (existingIndex !== -1) {
+        // Update existing site
+        sites[existingIndex] = { ...sites[existingIndex], ...data };
+      } else {
+        // Add new site
+        sites.push(data);
+      }
+
+      chrome.storage.sync.set({ sites }, () => {
+        resolve();
+      });
+    });
+  });
+}

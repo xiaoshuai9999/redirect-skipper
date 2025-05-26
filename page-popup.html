@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>skipper</title>
+    <link rel="stylesheet" href="./src/theme.css" />
+    <style>
+      html {
+        width: 300px;
+        background-color: var(--bg-color);
+      }
+
+      h4 {
+        margin-block-end: 0.5em;
+        color: var(--title-font-color);
+      }
+
+      input,
+      button {
+        background-color: transparent;
+        box-sizing: border-box;
+        border: 1px solid var(--border-color);
+        color: var(--font-color);
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      input {
+        width: 100%;
+        height: 30px;
+        line-height: 1;
+        text-indent: 4px;
+        outline: none;
+
+        &:read-only {
+          cursor: not-allowed;
+        }
+      }
+      button {
+        cursor: pointer;
+        color: #fff;
+        background-color: var(--btn-bg-color);
+        padding: 4px 6px;
+        &:disabled {
+          cursor: not-allowed;
+        }
+      }
+      .btns {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        display: flex;
+        justify-content: center;
+      }
+
+      .setting-bar {
+        display: flex;
+        justify-content: end;
+      }
+
+      #setting {
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="setting-bar">
+      <button id="setting">🔧</button>
+    </div>
+
+    <h4 data-i18n="currentUrl" style="margin-block-start: 0"></h4>
+    <input id="current-url" />
+
+    <h4 data-i18n="siteTitle"></h4>
+    <input id="site-title" type="text" />
+
+    <h4 data-i18n="hostname"></h4>
+    <input id="hostname-input" readonly type="text" />
+
+    <h4 data-i18n="targetParam"></h4>
+
+    <input list="target-param-list" id="target-param-input" />
+
+    <h4 data-i18n="targetDomain"></h4>
+
+    <input
+      id="target-domain"
+      placeholder="i18n:canNotGetTargetUrl"
+      readonly
+      type="text"
+    />
+
+    <datalist id="target-param-list">
+      <option value="target"></option>
+      <option value="href"></option>
+      <option value="link"></option>
+      <option value="url"></option>
+      <option value="u"></option>
+    </datalist>
+
+    <div class="btns">
+      <button data-i18n="submit" id="submit"></button>
+    </div>
+
+    <script type="module" src="./src/popup.js"></script>
+  </body>
+</html>

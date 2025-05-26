@@ -1,13 +1,7 @@
 import sites from "./sites.js";
+import { getTargetUrl } from "./utils.js";
 
 let sitesLocal = [];
-chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === "sync") {
-    if (changes.sites) {
-      sitesLocal = changes.sites.newValue;
-    }
-  }
-});
 
 chrome.webNavigation.onBeforeNavigate.addListener(
   (details) => {
@@ -18,7 +12,9 @@ chrome.webNavigation.onBeforeNavigate.addListener(
         return;
       }
 
-      const site = sites.find((site) => site.hostname === url.hostname);
+      const site =
+        sites.find((site) => site.hostname === url.hostname) ||
+        sitesLocal.find((site) => site.hostname === url.hostname);
 
       if (site) {
         let targetUrl = "";
@@ -26,12 +22,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(
         if (typeof site.getTargetUrl === "function") {
           targetUrl = site.getTargetUrl(url);
         } else {
-          targetUrl =
-            url.searchParams.get("target") ||
-            url.searchParams.get("url") ||
-            url.searchParams.get("u") ||
-            url.searchParams.get("link") ||
-            url.searchParams.get("href");
+          targetUrl = getTargetUrl(url.searchParams);
         }
 
         // 更新标签页的URL为目标URL
@@ -86,4 +77,20 @@ chrome.runtime.onInstalled.addListener(() => {
   if (title) {
     chrome.action.setTitle({ title });
   }
+
+  // 初始化用户数据
+  chrome.storage.sync.get("sites").then((result) => {
+    if (Array.isArray(result.sites)) {
+      sitesLocal = result.sites;
+    }
+  });
+
+  // 更新用户数据
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === "sync") {
+      if (changes.sites) {
+        sitesLocal = changes.sites.newValue;
+      }
+    }
+  });
 });

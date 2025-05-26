@@ -7,24 +7,25 @@
   "manifest_version": 3,
   "permissions": ["webNavigation", "tabs", "storage"],
   "background": {
-    "service_worker": "./scripts/service_worker.js",
+    "service_worker": "./src/service_worker.js",
     "type": "module"
   },
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "page-popup.html",
     "default_icon": {
-      "16": "images/logo.png",
-      "32": "images/logo.png",
-      "48": "images/logo.png",
-      "128": "images/logo.png"
+      "16": "images/logo-16.png",
+      "32": "images/logo-32.png",
+      "64": "images/logo-64.png",
+      "128": "images/logo-128.png"
     },
     "default_title": "Add current page to skip list"
   },
+  "options_page": "page-options.html",
   "icons": {
-    "16": "images/logo.png",
-    "32": "images/logo.png",
-    "48": "images/logo.png",
-    "128": "images/logo.png"
+    "16": "images/logo-16.png",
+    "32": "images/logo-32.png",
+    "64": "images/logo-64.png",
+    "128": "images/logo-128.png"
   },
   "default_locale": "en"
 }

@@ -14,13 +14,13 @@ export default [
     example: "https://sspai.com/link?target=https%3A%2F%2Fcocos.com",
     favicon: "https://cdn-static.sspai.com/favicon/sspai.ico",
   },
-  {
-    hostname: "link.zhihu.com",
-    title: "知乎",
-    param: "target",
-    example: "https://link.zhihu.com/?target=https%3A%2F%2Fcocos.com",
-    favicon: "https://static.zhihu.com/heifetz/favicon.ico",
-  },
+  // {
+  //   hostname: "link.zhihu.com",
+  //   title: "知乎",
+  //   param: "target",
+  //   example: "https://link.zhihu.com/?target=https%3A%2F%2Fcocos.com",
+  //   favicon: "https://static.zhihu.com/heifetz/favicon.ico",
+  // },
   {
     hostname: "link.csdn.net",
     title: "CSDN",
