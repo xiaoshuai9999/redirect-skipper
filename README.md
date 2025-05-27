@@ -51,3 +51,5 @@
 ![](./screenshots/demo.png)
 
 你也可以将你添加的地址反馈给开发者，以便更新插件数据库，普惠其他用户。
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114577480160068&bvid=BV1UwjXzSEwL&cid=30172448568&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
