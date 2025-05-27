@@ -11,14 +11,17 @@
 </div>
 
 <div align="center">
-  <a href="https://chromewebstore.google.com/detail/redirect-skipper/bcjldhihfjnhgmkmdeojigknladnbcek?authuser=0&hl=zh-CN" target="_blank">
+<p>
+    <a href="https://chromewebstore.google.com/detail/redirect-skipper/bcjldhihfjnhgmkmdeojigknladnbcek?authuser=0&hl=zh-CN" target="_blank">
     <img src="./screenshots/chrome.png" width="16" /> Chrome 商店安装
   </a>
   <a href="https://chromewebstore.google.com/detail/redirect-skipper/bcjldhihfjnhgmkmdeojigknladnbcek?authuser=0&hl=zh-CN" target="_blank">
     <img src="./screenshots/edge.png" width="16" /> Edge 商店安装
   </a>
-  <p>A Chrome extension that bypasses redirect warning pages.</p>
+</p>
+
   <p>一款让你无感跳过各种提示外链中转页的浏览器插件。</p>
+    A Chrome extension that bypasses redirect warning pages.
 
 </div>
 
@@ -34,9 +37,7 @@
 - 🪶 **极致轻量** 无任何框架依赖，纯原生开发（包括开发时和运行时）
 - 🎨 **明暗主题** 适配了浏览器的明暗主题，视觉体验更协调
 
-![](./screenshots/site-juejin.png)
-![](./screenshots/site-zhihu.png)
-![](./screenshots/site-sspai.png)
+![](./screenshots/sites.png)
 
 ### 🛠️ 自定义规则指南
 
@@ -47,8 +48,6 @@
 3️⃣ 在弹窗中输入 **目标地址的参数名称**，可观察地址栏（通常会自动填充，若未填充，可手动填写，常见名称如 `target` 或 `url`）。  
 4️⃣ 点击 **“添加到创建列表”** 按钮即可保存到用户数据，刷新页面即可生效。
 
-![](./screenshots/add.png)
+![](./screenshots/demo.png)
 
 你也可以将你添加的地址反馈给开发者，以便更新插件数据库，普惠其他用户。
-
-<video src="./screenshots/video.mov"  />
