@@ -42,5 +42,17 @@
   },
   "options_reportTip": {
     "message": "反馈给开发者"
+  },
+  "options_setting_title": {
+    "message": "高级设置"
+  },
+  "options_setting_fuzzy": {
+    "message": "开启模糊匹配"
+  },
+  "options_setting_fuzzy_detailsTitle": {
+    "message": "选项解释"
+  },
+  "options_setting_fuzzy_detailsContent": {
+    "message": "当开启模糊匹配之后，遇到未被收录的网站，如果页面地址符合常见的跳转格式(如：https://example.com/hello/?target=xxxx) 也会被直接跳转到 xxx"
   }
 }

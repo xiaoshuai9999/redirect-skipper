@@ -56,9 +56,42 @@
           }
         }
       }
+      fieldset {
+        width: 600px;
+        margin: 30px auto;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+
+        & .setting-item {
+          display: flex;
+
+          & .setting-item-info {
+            padding-right: 30px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
     </style>
   </head>
   <body>
+    <fieldset>
+      <legend data-i18n="options_setting_title"></legend>
+
+      <div class="setting-item">
+        <div class="setting-item-info">
+          <input type="checkbox" id="fuzzy" name="fuzzy" />
+          <label for="fuzzy" data-i18n="options_setting_fuzzy"></label>
+        </div>
+        <details>
+          <summary data-i18n="options_setting_fuzzy_detailsTitle"></summary>
+          <span data-i18n="options_setting_fuzzy_detailsContent"></span>
+          <!-- https://www.gcores.com/link?target=https%3A%2F%2Fcocos.com -->
+        </details>
+      </div>
+    </fieldset>
+
     <ul id="sites-list"></ul>
 
     <script type="module" src="./src/options.js"></script>

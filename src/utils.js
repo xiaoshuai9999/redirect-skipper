@@ -1,7 +1,20 @@
-export const targetParams = ["target", "link", "href", "url", "u"];
+export const targetParams = [
+  "target",
+  "link",
+  "href",
+  "url",
+  "u",
+  "to",
+  "toasturl", // 微博
+  "q", // YouTube
+];
 
-export function getTargetUrl(searchParams) {
-  for (const param of targetParams) {
+export function getTargetUrl(searchParams, customParams = []) {
+  if (customParams.length === 0) {
+    customParams = targetParams;
+  }
+
+  for (const param of customParams) {
     const value = searchParams.get(param);
     if (value) {
       return decodeURIComponent(value);

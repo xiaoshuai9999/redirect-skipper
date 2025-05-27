@@ -75,6 +75,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // li 是动态创建的，需要重新绑定 i18n
     i18n();
   }
+
+  // 高级设置
+
+  const $fuzzy = $("fuzzy");
+
+  chrome.storage.sync.get("fuzzy", (result) => {
+    $fuzzy.checked = result.fuzzy || false;
+  });
+
+  $fuzzy.addEventListener("change", () => {
+    chrome.storage.sync.set({ fuzzy: $fuzzy.checked }, () => {
+      if (chrome.runtime.lastError) {
+        message(chrome.runtime.lastError.message, "error");
+      }
+    });
+  });
 });
 
 function getSites() {

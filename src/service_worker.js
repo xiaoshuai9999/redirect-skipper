@@ -2,36 +2,53 @@ import sites from "./sites.js";
 import { getTargetUrl } from "./utils.js";
 
 let sitesLocal = [];
+let isFuzzy = false;
 
 // 核心功能：拦截导航请求并重定向到目标URL
 chrome.webNavigation.onBeforeNavigate.addListener(
   (details) => {
     try {
-      const url = new URL(details.url);
-
-      if (/^http/.test(url.protocol) === false) {
+      if (/^http/.test(details.url) === false) {
         return;
       }
+
+      const url = new URL(details.url);
 
       const site =
         sites.find((site) => site.hostname === url.hostname) ||
         sitesLocal.find((site) => site.hostname === url.hostname);
 
+      let targetUrl = "";
+
       if (site) {
-        let targetUrl = "";
+        if (site.pathname) {
+          // 如果站点有特定的路径，则检查当前URL的路径是否匹配
+          if (!url.pathname.startsWith(site.pathname)) {
+            return;
+          }
+        }
 
         if (typeof site.getTargetUrl === "function") {
-          targetUrl = site.getTargetUrl(url);
+          targetUrl = site.getTargetUrl(details.url);
         } else {
           targetUrl = getTargetUrl(url.searchParams);
         }
+      } else if (isFuzzy) {
+        // 如果没有找到匹配的站点且启用了模糊匹配，则尝试从URL中提取目标URL
+        // 使用预定义的参数列表来获取目标URL
+        targetUrl = getTargetUrl(url.searchParams, [
+          "target",
+          "link",
+          "href",
+          "url",
+        ]);
+      }
 
-        // 更新标签页的URL为目标URL
-        if (targetUrl) {
-          chrome.tabs.update(details.tabId, {
-            url: decodeURIComponent(targetUrl),
-          });
-        }
+      // 更新标签页的URL为目标URL
+      if (/^http/.test(targetUrl)) {
+        chrome.tabs.update(details.tabId, {
+          url: decodeURIComponent(targetUrl),
+        });
       }
     } catch (error) {
       // do nothing
@@ -78,7 +95,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.action.setTitle({ title });
   }
 
-  createContextMenus();
+  // createContextMenus();
 
   // 初始化用户数据
   chrome.storage.sync.get("sites").then((result) => {
@@ -94,11 +111,20 @@ chrome.runtime.onInstalled.addListener(() => {
     }
   });
 
+  // 获取 fuzzy 设置
+  chrome.storage.sync.get("fuzzy", (result) => {
+    isFuzzy = result.fuzzy ?? false;
+  });
+
   // 更新用户数据
   chrome.storage.onChanged.addListener((changes, area) => {
     if (area === "sync") {
       if (changes.sites) {
         sitesLocal = changes.sites.newValue;
+      }
+
+      if (changes.fuzzy) {
+        isFuzzy = changes.fuzzy.newValue;
       }
     }
   });

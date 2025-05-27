@@ -42,5 +42,17 @@
   },
   "options_reportTip": {
     "message": "Report to developer"
+  },
+  "options_setting_title": {
+    "message": "Advanced Settings"
+  },
+  "options_setting_fuzzy": {
+    "message": "Turn on fuzzy matching"
+  },
+  "options_setting_fuzzy_detailsTitle": {
+    "message": "Details"
+  },
+  "options_setting_fuzzy_detailsContent": {
+    "message": "When fuzzy matching is turned on, if the page address meets a website that has not been included, if the page address meets the common jump format (such as: https://example.com/hello/?target=xxxx), it will also be directly redirected to xxx"
   }
 }
