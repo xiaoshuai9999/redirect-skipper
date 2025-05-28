@@ -77,6 +77,9 @@ flowchart TB
 
 ```
 
-### 其他
+### 产品历程
+
+- 2.x https://juejin.cn/post/7509300461191659560
+- 1.x https://juejin.cn/post/7495977411273490447
 
 [视频教程](https://www.bilibili.com/video/BV1UwjXzSEwL/?vd_source=4d6295fb1c4aeb4020b1de1bc46de5ec)
