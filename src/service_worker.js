@@ -57,45 +57,11 @@ chrome.webNavigation.onBeforeNavigate.addListener(
   { urls: ["<all_urls>"] }
 );
 
-function createContextMenus() {
-  // 右键菜单
-  const menuIdMap = {
-    addToSkipList: "addToSkipList",
-  };
-
-  const extensionMenus = [
-    {
-      id: menuIdMap.addToSkipList,
-      title: chrome.i18n.getMessage("menu_addToSkipList"),
-      contexts: ["page"],
-      action(info, tab) {
-        // 打开 popup 页面
-        chrome.action.openPopup();
-      },
-    },
-  ];
-
-  extensionMenus.forEach((menuItem) => {
-    chrome.contextMenus.create({
-      id: menuItem.id,
-      title: menuItem.title,
-      contexts: menuItem.contexts,
-    });
-  });
-
-  chrome.contextMenus.onClicked.addListener((info, tab) => {
-    const menuItem = extensionMenus.find((item) => item.id === info.menuItemId);
-    menuItem?.action?.(info, tab);
-  });
-}
-
 chrome.runtime.onInstalled.addListener(() => {
   const title = chrome.i18n.getMessage("actionTitle");
   if (title) {
     chrome.action.setTitle({ title });
   }
-
-  // createContextMenus();
 
   // 初始化用户数据
   chrome.storage.sync.get("sites").then((result) => {
