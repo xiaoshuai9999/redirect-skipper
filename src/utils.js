@@ -9,11 +9,7 @@ export const targetParams = [
   "q", // YouTube
 ];
 
-export function getTargetUrl(searchParams, customParams = []) {
-  if (customParams.length === 0) {
-    customParams = targetParams;
-  }
-
+export function getTargetUrl(searchParams, customParams = targetParams) {
   for (const param of customParams) {
     const value = searchParams.get(param);
     if (value) {
