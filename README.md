@@ -15,9 +15,10 @@
     <a href="https://chromewebstore.google.com/detail/redirect-skipper/bcjldhihfjnhgmkmdeojigknladnbcek?authuser=0&hl=zh-CN" target="_blank">
     <img src="./screenshots/chrome.png" width="16" /> Chrome 商店安装
   </a>
-  <a style="opacity: .5" title="微软的开发者注册不成功，你能信？！"  href="https://chromewebstore.google.com/detail/redirect-skipper/bcjldhihfjnhgmkmdeojigknladnbcek?authuser=0&hl=zh-CN" target="_blank">
+  <a href="https://github.com/dogodo-cc/redirect-skipper/releases/tag/2.0.0" target="_blank">
     <img src="./screenshots/edge.png" width="16" /> Edge 商店安装
   </a>
+
 </p>
 
   <p>一款让你无感跳过各种提示外链中转页的浏览器插件。</p>
