@@ -31,17 +31,16 @@ chrome.webNavigation.onBeforeNavigate.addListener(
         if (typeof site.getTargetUrl === "function") {
           targetUrl = site.getTargetUrl(details.url);
         } else {
-          targetUrl = getTargetUrl(url.searchParams);
+          targetUrl = getTargetUrl(url.searchParams, site.param, true);
         }
       } else if (isFuzzy) {
         // 如果没有找到匹配的站点且启用了模糊匹配，则尝试从URL中提取目标URL
-        // 使用预定义的参数列表来获取目标URL
-        targetUrl = getTargetUrl(url.searchParams, [
-          "target",
-          "link",
-          "href",
-          "url",
-        ]);
+        // 使用常见的参数列表来获取目标 URL （不用所有参数列表是避免误判）
+        targetUrl = getTargetUrl(
+          url.searchParams,
+          ["target", "link", "href", "url"],
+          false
+        );
       }
 
       // 更新标签页的URL为目标URL

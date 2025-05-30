@@ -9,8 +9,18 @@ export const targetParams = [
   "q", // YouTube
 ];
 
-export function getTargetUrl(searchParams, customParams = targetParams) {
-  for (const param of customParams) {
+export function getTargetUrl(
+  searchParams,
+  params = "target",
+  deepSearch = true
+) {
+  params = Array.isArray(params) ? params : [params];
+
+  if (deepSearch) {
+    params = params.concat(targetParams);
+  }
+
+  for (const param of params) {
     const value = searchParams.get(param);
     if (value) {
       return decodeURIComponent(value);
