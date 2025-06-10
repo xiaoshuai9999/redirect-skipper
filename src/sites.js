@@ -8,6 +8,15 @@
 
 export default [
   {
+    hostname: "bbs.colg.cn",
+    title: "Colg",
+    pathname: "/forum.php",
+    param: "referer_url",
+    example:
+      "https://bbs.colg.cn/forum.php?mod=urlintercept&referer_url=https%3A%2F%2Fpan.baidu.com%2Fs%2F1cRta2GIAUXTaINRQRNWwfw",
+    favicon: "https://bbs.colg.cn/favicon.ico",
+  },
+  {
     hostname: "link.juejin.cn",
     title: "掘金",
     param: "target",
