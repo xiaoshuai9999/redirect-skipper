@@ -48,6 +48,15 @@ export default [
     favicon: "https://g.csdnimg.cn/static/logo/favicon32.ico",
   },
   {
+    hostname: "bbs.colg.cn",
+    title: "Colg",
+    pathname: "/forum.php",
+    param: "referer_url",
+    example:
+      "https://bbs.colg.cn/forum.php?mod=urlintercept&referer_url=https%3A%2F%2Fpan.baidu.com%2Fs%2F1cRta2GIAUXTaINRQRNWwfw",
+    favicon: "https://bbs.colg.cn/favicon.ico",
+  },
+  {
     hostname: "www.jianshu.com",
     pathname: "/go-wild",
     title: "简书",
